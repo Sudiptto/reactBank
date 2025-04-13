@@ -13,6 +13,8 @@ import UserProfile from './components/UserProfile';
 import LogIn from './components/Login';
 import Credits from './components/Credits';
 import Debits from './components/Debits';
+import axios from 'axios'; // Import axios for API requests
+
 
 class App extends Component {
   constructor() {  // Create and initialize state
@@ -27,6 +29,33 @@ class App extends Component {
       }
     };
   }
+
+  // lifecycle method should include API requests 
+componentDidMount() {
+  // Fetch credits and debits data from the API and update the state
+  axios.get('https://johnnylaicode.github.io/api/credits.json')
+    .then(response => {
+      const creditList = response.data;
+      // response.data is an array of credit objects
+      // Calculate the total credit amount and update the state
+      const creditAmount = creditList.reduce((total, credit) => total + credit.amount, 0);
+      this.setState({ creditList, accountBalance: this.state.accountBalance + creditAmount });
+    })
+    .catch(error => console.error('Error fetching credits:', error));
+
+   // Fetch debits data from the API and update the state 
+  axios.get('https://johnnylaicode.github.io/api/debits.json')
+    .then(response => {
+      // response.data is an array of debit objects
+      const debitList = response.data;
+
+      const debitAmount = debitList.reduce((total, debit) => total + debit.amount, 0);
+      // Update the state with the fetched data and adjust account balance
+      // by subtracting the total debit amount
+      this.setState({ debitList, accountBalance: this.state.accountBalance - debitAmount });
+    })
+    .catch(error => console.error('Error fetching debits:', error));
+}
 
   // Update state's currentUser (userName) after "Log In" button is clicked
   mockLogIn = (logInInfo) => {  
