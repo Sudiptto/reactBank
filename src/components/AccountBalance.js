@@ -10,7 +10,8 @@ class AccountBalance extends Component {
   render() {
     return (
       <div>
-        Balance: {this.props.accountBalance}
+        {/*Round to the 100th decimal */}
+      Balance: {this.props.accountBalance.toFixed(2)}
       </div>
     );
   }
