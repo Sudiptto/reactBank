@@ -57,6 +57,35 @@ componentDidMount() {
     .catch(error => console.error('Error fetching debits:', error));
 }
 
+  // addCredit and addDebit that update the state based on user input of new credits and debits
+
+  addCredit = (newCredit) => {
+    // Add the new credit to the creditList and update account balance
+    const { creditList } = this.state;
+    // updateCreditList is a new array that includes the new credit
+    const updateCreditList = [...creditList, newCredit];
+    // Update the state with the new credit and adjust account balance
+    this.setState(prevState => ({
+      creditList: updateCreditList,
+      accountBalance: prevState.accountBalance + newCredit.amount,
+    }));
+  }
+
+  // addDebit that updates the state based on user input of new debits
+  addDebit = (newDebit) => {
+    // Add the new debit to the debitList and update account balance
+    const { debitList } = this.state;
+    // updateDebitList is a new array that includes the new debit
+    const updateDebitList = [...debitList, newDebit];
+    // Update the state with the new debit and adjust account balance
+    this.setState(prevState => ({
+      debitList: updateDebitList,
+      accountBalance: prevState.accountBalance - newDebit.amount,
+    }));
+  }
+
+
+
   // Update state's currentUser (userName) after "Log In" button is clicked
   mockLogIn = (logInInfo) => {  
     const newUser = {...this.state.currentUser};
@@ -72,8 +101,8 @@ componentDidMount() {
       <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince} />
     )
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)
-    const CreditsComponent = () => (<Credits credits={this.state.creditList} />) 
-    const DebitsComponent = () => (<Debits debits={this.state.debitList} />) 
+    const CreditsComponent = () => (<Credits credits={this.state.creditList} addCredit={this.addCredit} />) 
+    const DebitsComponent = () => (<Debits debits={this.state.debitList} addDebit={this.addDebit} />) 
 
     // Important: Include the "basename" in Router, which is needed for deploying the React app to GitHub Pages
     return (
