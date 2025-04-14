@@ -1,36 +1,140 @@
-/*==================================================
-src/components/Debits.js
-
-The Debits component contains information for Debits page view.
-Note: You need to work on this file for the Assignment.
-==================================================*/
-import {Link} from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
+import AccountBalance from "./AccountBalance"; // Shared component to show the current balance
 
 const Debits = (props) => {
-  // Create the list of Debit items
-  let debitsView = () => {
-    const { debits } = props;
-    return debits.map((debit) => {  // Extract "id", "amount", "description" and "date" properties of each debits JSON array element
-      let date = debit.date.slice(0,10);
-      return <li key={debit.id}>{debit.amount} {debit.description} {date}</li>
+  const { debits, addDebit, accountBalance } = props;
+
+  // Handle form submission for adding a new debit
+  const handleAddDebit = (event) => {
+    event.preventDefault();
+    const description = event.target.elements.description.value;
+    const amount = parseFloat(event.target.elements.amount.value);
+
+    if (description && !isNaN(amount)) {
+      const newDebit = {
+        id: Math.floor(Math.random() * 1000), // Random ID for simplicity (would use UUIDs in production)
+        description: description,
+        amount: amount,
+        date: new Date().toISOString(), // Save the exact time of the transaction
+      };
+
+      addDebit(newDebit); // Call parent-provided function to update debit list
+      event.target.reset(); // Clear the form fields
+    }
+  };
+
+  // Dynamically generate table rows for each debit entry
+  const renderDebits = () => {
+    return debits.map((debit) => {
+      const formattedDate = new Date(debit.date).toLocaleDateString(); // Format ISO string to readable date
+      return (
+        <tr key={debit.id}>
+          <td>{debit.description}</td>
+          <td>${debit.amount.toFixed(2)}</td>
+          <td>{formattedDate}</td>
+        </tr>
+      );
     });
-  }
-  // Render the list of Debit items and a form to input new Debit item
+  };
+
+  // Sum all debit values to optionally show total debits
+  const debitTotal = debits.reduce((total, debit) => total + debit.amount, 0);
+
   return (
-    <div>
-      <h1>Debits</h1>
+    <div style={{ fontFamily: "Arial, sans-serif", margin: "20px" }}>
+      <h1 style={{ textAlign: "center", color: "#f44336" }}>Debits</h1>
 
-      {debitsView()}
+      {/* Always show account balance at the top for clarity */}
+      <p style={{ textAlign: "center", fontSize: "18px" }}>
+        <strong>Account Balance:</strong> ${accountBalance.toFixed(2)}
+      </p>
 
-      <form onSubmit={props.addDebit}>
-        <input type="text" name="description" />
-        <input type="number" name="amount" />
-        <button type="submit">Add Debit</button>
+      {/* Table structure for listing debit transactions */}
+      <table
+        style={{
+          width: "100%",
+          borderCollapse: "collapse",
+          marginBottom: "20px",
+        }}
+      >
+        <thead>
+          <tr style={{ backgroundColor: "#f2f2f2" }}>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>
+              Description
+            </th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Amount</th>
+            <th style={{ border: "1px solid #ddd", padding: "8px" }}>Date</th>
+          </tr>
+        </thead>
+        <tbody>{renderDebits()}</tbody>
+      </table>
+
+      {/* Form to input new debit transactions */}
+      <form
+        onSubmit={handleAddDebit}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "10px",
+        }}
+      >
+        <input
+          type="text"
+          name="description"
+          placeholder="Description"
+          style={{
+            padding: "10px",
+            width: "300px",
+            border: "1px solid #ccc",
+            borderRadius: "4px",
+          }}
+        />
+        <input
+          type="number"
+          name="amount"
+          placeholder="Amount"
+          style={{
+            padding: "10px",
+            width: "300px",
+            border: "1px solid #ccc",
+            borderRadius: "4px",
+          }}
+        />
+        <button
+          type="submit"
+          style={{
+            padding: "10px 20px",
+            backgroundColor: "#f44336",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+          }}
+        >
+          Add Debit
+        </button>
       </form>
-      <br/>
-      <Link to="/">Return to Home</Link>
+
+      <br />
+
+      {/* Navigation link to go back to the homepage */}
+      <Link
+        to="/"
+        style={{
+          display: "block",
+          textAlign: "center",
+          marginTop: "20px",
+          textDecoration: "none",
+          color: "#f44336",
+          fontWeight: "bold",
+        }}
+      >
+        Return to Home
+      </Link>
     </div>
   );
-}
+};
 
 export default Debits;
