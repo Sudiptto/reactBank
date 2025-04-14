@@ -6,7 +6,7 @@ The Credits component contains information for Credits page view.
 import { Link } from "react-router-dom";
 
 const Credits = (props) => {
-  const { credits, addCredit } = props;
+  const { credits, addCredit, accountBalance } = props;
 
   const handleAddCredit = (event) => {
     // Prevent default form submission behavior
@@ -55,7 +55,9 @@ const Credits = (props) => {
       <h1 style={{ textAlign: "center", color: "#4CAF50" }}>Credits</h1>
 
       <p style={{ textAlign: "center", fontSize: "18px" }}>
-        <strong>Account Balance:</strong> ${creditAmount.toFixed(2)}
+        <strong>Account Balance:</strong> ${accountBalance.toFixed(2)}
+        <br></br>
+        <strong>Current Credit: </strong> ${creditAmount.toFixed(2)}
       </p>
 
 

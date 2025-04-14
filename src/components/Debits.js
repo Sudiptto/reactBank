@@ -19,16 +19,20 @@ const Debits = (props) => {
         date: new Date().toISOString(), // Save the exact time of the transaction
       };
 
-      addDebit(newDebit); // Call parent-provided function to update debit list
-      event.target.reset(); // Clear the form fields
+      // Call parent-provided function to update debit list
+      addDebit(newDebit); 
+      // Clear the form fields
+      event.target.reset(); 
     }
   };
 
   // Dynamically generate table rows for each debit entry
   const renderDebits = () => {
     return debits.map((debit) => {
-      const formattedDate = new Date(debit.date).toLocaleDateString(); // Format ISO string to readable date
+      // Format ISO string to readable date
+      const formattedDate = new Date(debit.date).toLocaleDateString(); 
       return (
+        // Use a unique key for each row to help React identify which items have changed
         <tr key={debit.id}>
           <td>{debit.description}</td>
           <td>${debit.amount.toFixed(2)}</td>
@@ -48,6 +52,8 @@ const Debits = (props) => {
       {/* Always show account balance at the top for clarity */}
       <p style={{ textAlign: "center", fontSize: "18px" }}>
         <strong>Account Balance:</strong> ${accountBalance.toFixed(2)}
+        <br></br>
+        <strong>Current Debit: </strong>$-{debitTotal.toFixed(2)}
       </p>
 
       {/* Table structure for listing debit transactions */}

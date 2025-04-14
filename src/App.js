@@ -20,7 +20,7 @@ class App extends Component {
   constructor() {  // Create and initialize state
     super(); 
     this.state = {
-      accountBalance: 1234567.89,
+      accountBalance: 0,
       creditList: [],
       debitList: [],
       currentUser: {
@@ -101,7 +101,7 @@ componentDidMount() {
       <UserProfile userName={this.state.currentUser.userName} memberSince={this.state.currentUser.memberSince} />
     )
     const LogInComponent = () => (<LogIn user={this.state.currentUser} mockLogIn={this.mockLogIn} />)
-    const CreditsComponent = () => (<Credits credits={this.state.creditList} addCredit={this.addCredit} />) 
+    const CreditsComponent = () => (<Credits credits={this.state.creditList} addCredit={this.addCredit} accountBalance={this.state.accountBalance} />) 
     const DebitsComponent = () => (<Debits debits={this.state.debitList} addDebit={this.addDebit} accountBalance={this.state.accountBalance} />) 
 
     // Important: Include the "basename" in Router, which is needed for deploying the React app to GitHub Pages
