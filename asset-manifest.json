@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/my-react-app/static/css/main.01e685fb.css",
-    "main.js": "/my-react-app/static/js/main.ceddf4ba.js",
-    "static/js/453.d81f9453.chunk.js": "/my-react-app/static/js/453.d81f9453.chunk.js",
-    "index.html": "/my-react-app/index.html",
-    "main.01e685fb.css.map": "/my-react-app/static/css/main.01e685fb.css.map",
-    "main.ceddf4ba.js.map": "/my-react-app/static/js/main.ceddf4ba.js.map",
-    "453.d81f9453.chunk.js.map": "/my-react-app/static/js/453.d81f9453.chunk.js.map"
+    "main.css": "/reactBank/static/css/main.01e685fb.css",
+    "main.js": "/reactBank/static/js/main.9df5bd8f.js",
+    "static/js/453.d81f9453.chunk.js": "/reactBank/static/js/453.d81f9453.chunk.js",
+    "index.html": "/reactBank/index.html",
+    "main.01e685fb.css.map": "/reactBank/static/css/main.01e685fb.css.map",
+    "main.9df5bd8f.js.map": "/reactBank/static/js/main.9df5bd8f.js.map",
+    "453.d81f9453.chunk.js.map": "/reactBank/static/js/453.d81f9453.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.01e685fb.css",
-    "static/js/main.ceddf4ba.js"
+    "static/js/main.9df5bd8f.js"
   ]
 }
