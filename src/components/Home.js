@@ -18,7 +18,7 @@ class Home extends Component {
 
         {/* Hero Image */}
         <img
-          src="https://picsum.photos/400/250"
+          src="https://images.mktw.net/im-739712/social"
           alt="bank"
           style={{
             margin: '20px 0',
