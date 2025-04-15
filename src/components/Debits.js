@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AccountBalance from "./AccountBalance"; // Shared component to show the current balance
 
 const Debits = (props) => {
+  // Destructure props to get debits, addDebit function, and account balance
   const { debits, addDebit, accountBalance } = props;
 
   // Handle form submission for adding a new debit
@@ -13,10 +13,11 @@ const Debits = (props) => {
 
     if (description && !isNaN(amount)) {
       const newDebit = {
-        id: Math.floor(Math.random() * 1000), // Random ID for simplicity (would use UUIDs in production)
+        id: Math.floor(Math.random() * 1000),
         description: description,
         amount: amount,
-        date: new Date().toISOString(), // Save the exact time of the transaction
+        // Save the exact time of the transaction
+        date: new Date().toISOString(), 
       };
 
       // Call parent-provided function to update debit list
@@ -28,8 +29,9 @@ const Debits = (props) => {
 
   // Dynamically generate table rows for each debit entry
   const renderDebits = () => {
+    // Map through the debits array and create a table row for each debit
     return debits.map((debit) => {
-      // Format ISO string to readable date
+      // Format  string to readable date
       const formattedDate = new Date(debit.date).toLocaleDateString(); 
       return (
         // Use a unique key for each row to help React identify which items have changed
@@ -48,7 +50,8 @@ const Debits = (props) => {
   return (
     <div style={{ fontFamily: "Arial, sans-serif", margin: "20px" }}>
       <h1 style={{ textAlign: "center", color: "#f44336" }}>Debits</h1>
-
+      {/*Paragraph Warning */}
+      <p>Note, in order to add debit you must have a number for the amount input field & a good description describing the reasoning for adding this debit! If you do not adhere to this than the 'Add Debit' button simply will not function!</p>
       {/* Always show account balance at the top for clarity */}
       <p style={{ textAlign: "center", fontSize: "18px" }}>
         <strong>Account Balance:</strong> ${accountBalance.toFixed(2)}
@@ -86,6 +89,7 @@ const Debits = (props) => {
           gap: "10px",
         }}
       >
+        {/* Input fields for description and amount */}
         <input
           type="text"
           name="description"
@@ -108,6 +112,7 @@ const Debits = (props) => {
             borderRadius: "4px",
           }}
         />
+        {/* Button to submit the form and add a new debit */}
         <button
           type="submit"
           style={{

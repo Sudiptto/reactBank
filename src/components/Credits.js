@@ -6,6 +6,7 @@ The Credits component contains information for Credits page view.
 import { Link } from "react-router-dom";
 
 const Credits = (props) => {
+  // Destructure props to get credits, addCredit function, and account balance
   const { credits, addCredit, accountBalance } = props;
 
   const handleAddCredit = (event) => {
@@ -33,8 +34,10 @@ const Credits = (props) => {
   };
 
   const renderCredits = () => {
+    // Map through the credits array and create a table row for each credit
     return credits.map((credit) => {
       const formattedDate = new Date(credit.date).toLocaleDateString();
+      // Format the date to a more readable format
       return (
         <tr key={credit.id}>
           <td>{credit.description}</td>
@@ -53,8 +56,9 @@ const Credits = (props) => {
   return (
     <div style={{ fontFamily: "Arial, sans-serif", margin: "20px" }}>
       <h1 style={{ textAlign: "center", color: "#4CAF50" }}>Credits</h1>
-
+      <p>Note, in order to add credit you must have a number for the amount input field & a good description describing the reasoning for adding this credit! If you do not adhere to this than the 'AddCredit' button simply will not function!</p>
       <p style={{ textAlign: "center", fontSize: "18px" }}>
+
         <strong>Account Balance:</strong> ${accountBalance.toFixed(2)}
         <br></br>
         <strong>Current Credit: </strong> ${creditAmount.toFixed(2)}

@@ -67,8 +67,8 @@ class UserProfile extends Component {
               borderRadius: '5px',
               fontSize: '16px',
               fontWeight: 'bold',
-              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)', // Button shadow for depth
-              transition: 'background-color 0.3s ease', // Smooth hover effect
+              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
+              transition: 'background-color 0.3s ease', 
             }}
             onMouseOver={(e) => (e.target.style.backgroundColor = '#45A049')} 
             onMouseOut={(e) => (e.target.style.backgroundColor = '#4CAF50')}

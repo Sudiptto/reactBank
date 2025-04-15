@@ -15,19 +15,19 @@ class Home extends Component {
         <header style={{ backgroundColor: '#2C3E50', color: 'white', padding: '20px 0' }}>
           <h1 style={{ margin: 0, fontSize: '2.5rem' }}>Bank of React</h1>
         </header>
+          <img
+            src="https://images.mktw.net/im-739712/social"
+            alt="bank"
+            style={{
+              margin: '20px 0',
+              borderRadius: '15px',
+              boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)',
+              width: '30%', // Adjusted size to make it smaller
+              height: 'auto',
+            }}
+          />
 
-        {/* Hero Image */}
-        <img
-          src="https://images.mktw.net/im-739712/social"
-          alt="bank"
-          style={{
-            margin: '20px 0',
-            borderRadius: '15px',
-            boxShadow: '0 6px 12px rgba(0, 0, 0, 0.3)',
-          }}
-        />
-
-        {/* Welcome Message */}
+          {/* Welcome Message */}
         <p style={{ fontSize: '20px', color: '#34495E', marginBottom: '30px' }}>
           Welcome to the Bank of React! Please use our buttons below!.
         </p>
